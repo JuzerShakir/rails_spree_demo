@@ -11,7 +11,7 @@
 
 ## ❗ Objectives
 This web-app must accomplish the following:
-- [x] Initialize E-Commerce app with the [Spree Starter]('https://dev-docs.spreecommerce.org/getting-started/installation').
+- [x] Initialize E-Commerce app with the [Spree Starter](https://dev-docs.spreecommerce.org/getting-started/installation).
 - [x] Add new Products to the site.
 - [x] Create new Shipping Category to ship products to customers.
 - [x] Create a Taxanomy.
@@ -23,7 +23,7 @@ This web-app must accomplish the following:
 - [x] Setup payment method via StripeGateway.
 - [x] Specify Country/zone where the product is able to ship.
 - [x] Customer can then pay with the currency for country it is able to ship to.
-- [x] Payments for orders should be successful with these [test cards specified]('https://stripe.com/docs/testing#cards').
+- [x] Payments for orders should be successful with these [test cards specified](https://stripe.com/docs/testing#cards).
 
 ----
 
