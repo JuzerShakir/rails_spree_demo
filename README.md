@@ -1,140 +1,102 @@
-# Spree Starter
+# Project: Shop You
+*An e-commerce demo site built using Spree gem along with ability to checkout products and make payments using Stripe gem. Built on Ruby On Rails*
 
-[![Circle CI](https://circleci.com/gh/spree/spree_starter.svg?style=svg)](https://circleci.com/gh/spree/spree_starter) [![Maintainability](https://api.codeclimate.com/v1/badges/d240686c99b3d35eb61b/maintainability)](https://codeclimate.com/github/spree/spree_starter/maintainability)
+<div align="center">
+  <img src="public/assets/project_logo.png" />
+</div>
 
-This a dockerized [Spree Commerce](https://spreecommerce.org) application template ready to for local development and deployment to cloud providers.
 
-## Deploy in the cloud
+![](https://visitor-badge-reloaded.herokuapp.com/badge?page_id=juzershakir.gratify-me&color=000000&lcolor=000000&style=for-the-badge&logo=Github)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-<a href="https://render.com/deploy?repo=https://github.com/spree/spree_starter/tree/main">
-  <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height=32>
-</a>
+<a href="https://wakatime.com/@JuzerShakir/projects/bymgryqiii?start=2021-11-09" target="_blank"><img src="https://wakatime.com/badge/user/ccef187f-4308-4666-920d-d0a9a07d713a/project/d1c88212-ffbd-4d07-bb6b-ac2c156be01e.svg" alt="wakatime"></a>
 
-## Local Installation
 
-### Using Docker (Recommended)
-#### Install required tools and dependencies:
+## ❗ Objectives
+This web-app must accomplish the following:
+- [x] Initialize E-Commerce app with the [Spree Starter]('https://dev-docs.spreecommerce.org/getting-started/installation').
+- [x] Add new Products to the site.
+- [x] Create new Shipping Category to ship products to customers.
+- [x] Create a Taxanomy.
+- [x] Create 2 Catergories of products, each categories have 2 sub-categories.
+- [x] Create a new Stock Location for products.
+- [x] For most of the products create option-types (like: a model of phone can be available in multiple colors in different storage capacity.)
+- [x] Customer can then select any single item and add them to cart.
+- [x] Customers are able to fill Billing Address form for payment.
+- [x] Setup payment method via StripeGateway.
+- [x] Specify Country/zone where the product is able to ship.
+- [x] Customer can then pay with the currency for country it is able to ship to.
+- [x] Payments for orders should be successful with these [test cards specified]('https://stripe.com/docs/testing#cards').
 
-  * [Docker](https://www.docker.com/community-edition#/download)
+----
 
-#### Run setup script
+## 💎 Required Gems
 
-```bash
-bin/setup
-```
+**This project was built on Ruby version *3.0.2*.**
 
-This will automatically launch the application at `http://localhost:4000/admin`
+Additional important gems were added:
 
-#### (Optional) Import sample data such as products, categories, etc
+|  **Gem Names**  |         **Gem**        |     **Use**            |
+| :------------:  |     :------------:     |      :---------:       |
+| Spree Frontend  |   spree_frontend       |   For frontend         |
+|  Spree Gateway  |   spree_gateway        |    For Payments        |
 
-```bash
-docker-compose run web rake spree_sample:load
-```
+----
 
-#### Launching local server
+## ⚙️ Setting up a PostgreSQL user
 
-```bash
-docker-compose up
-```
-
-### Without Docker (not recommended for beginners)
-
-#### Install required tools and dependencies
-
-1. RVM - https://rvm.io/
-2. Ruby - `rvm install 3.0.2`
-3. Bundler - `gem install bundler`
-4. (MacOS) HomeBrew - https://brew.sh/
-5. (MacOS) PostgreSQL - `brew install postgresql`
-6. (MacOS) Redis - `brew install redis`
-7. (MacOS) ImageMagick - `brew install imagemagick`
-
-#### Run setup script
+If you don't have a user set on postgres, here's how to set new user:
 
 ```bash
-bin/setup-no-docker
+sudo -u postgres createuser -s [username]
 ```
-
-## Adding Storefront
-
-Spree is a [headless e-commerce platform](https://dev-docs.spreecommerce.org/getting-started/headless-commerce) which you can use with any storefront you like. We have pre-built integrations with:
-
-* [Next.js Commerce](https://dev-docs.spreecommerce.org/storefronts/next.js-commerce)
-* [Vue Storefront](https://dev-docs.spreecommerce.org/storefronts/vue-storefront)
-
-## Updating
-
-### Connect to the docker container
+To set a password for this user, log in to the PostgreSQL command line client:
 ```bash
-docker-compose run web bash
+sudo -u postgres psql
+```
+Enter the following command to set the password:
+```bash
+\password your_password
+```
+Enter and confirm the password. Then exit the PostgreSQL client:
+```bash
+\q
 ```
 
-### Run update commands
+-----
 
-```
-bundle update
-bin/rails spree:install:migrations
-bin/rails db:migrate
-```
+## 📋 Execution
 
-For additional instructions please visit [Spree Upgrade Guides](https://dev-docs.spreecommerce.org/upgrades)
+Run the following commands to execute locally:
 
-## Development
-
-### Launching rails console
+The following will install required version of ruby (make sure [rvm is installed](https://rvm.io/rvm/install).)
 
 ```bash
-docker-compose run web rails c
+rvm use 3.0.2
 ```
-
-### Launching bash console
-
 ```bash
-docker-compose run web bash
+git clone git@github.com:JuzerShakir/rails_spree_demo.git
 ```
-
-## Customization
-### Adding new gems
-
-Update `Gemfile` and run
-
+```bash
+cd rails_spree_demo
+```
 ```bash
 bundle install
-docker-compose build
 ```
 
-You will need to restart the server if running:
+### 💡 Imp Note:
+> In `config/database.yml`, add your own postgresql username and password in the file.
 
 ```bash
-docker-compose restart
+rails s
 ```
 
-## Environment variables
+ENJOY!
 
-| variable | description | default value |
-|---|---|---|
-| DEBUG_ASSETS | Enables/disables [asset debugging in development](https://guides.rubyonrails.org/asset_pipeline.html#turning-debugging-off) | false |
-| DB_POOL | database connection pool | 5 |
-| MEMCACHED_POOL_SIZE | memcache connection pool | 5 |
-| SENDGRID_API_KEY | API key to interface Sendgrid API | |
+-----
 
-## License
+To see this web-app up and running without executing above commands locally,
+I have deployed it on [Heroku](https://shop-you.herokuapp.com/). The product images will not show up as I have used free Amazon Cloud service which deletes images assets from their servers within 3-4 days.
 
-Spree Starter (formerly Spark Starter Kit) is copyright © 2015-2021
-[Spark Solutions Sp. z o.o.][spark]. It is free software,
-and may be redistributed under the terms specified in the
-[LICENSE](LICENSE.md) file.
+-----
 
-## About Spark Solutions
-
-[![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
-
-Spree Starter is maintained and funded by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github)
-The names and logos are trademarks of Spark Solutions Sp. z o.o.
-
-We are passionate about open source software.
-We are [available for hire][spark].
-
-[spark]:http://sparksolutions.co?utm_source=github
